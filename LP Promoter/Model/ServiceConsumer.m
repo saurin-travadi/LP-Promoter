@@ -189,7 +189,7 @@
         
         [self getDataForElement:@"GetLeadsSourceSubPromoterResult" Request:req :^(id json) {
             if (json!=nil) {
-                [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_B" Data:[json description]];
+                [[Utility alloc] saveToUserSavedDataWithKey:[@"" stringByAppendingFormat:@"DataList_%@",type] Data:[json description]];
             }
 
             NSMutableArray *data = [[NSMutableArray alloc] init];
@@ -267,6 +267,41 @@
     }];
 }
 
+-(void)getLeads:(UserInfo *)userInfo :(void (^)(id))Success {
+    
+    _OnSearchSuccess = [Success copy];
+    
+    NSString *soapMsg = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><GetLeadsInbounds xmlns=\"http://webservice.leadperfection.com/\"><clientid>%@</clientid><username>%@</username><password>%@</password></GetLeadsInbounds></soap:Body></soap:Envelope>",userInfo.clientID,userInfo.userName,userInfo.password];
+    
+    NSURL *url = [NSURL URLWithString: baseURL];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMsg length]];
+    [req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [req addValue:@"http://webservice.leadperfection.com/GetLeadsInbounds" forHTTPHeaderField:@"SOAPAction"];
+    [req addValue:msgLength forHTTPHeaderField:@"Content-Length"];
+    [req setHTTPMethod:@"POST"];
+    [req setHTTPBody: [soapMsg dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self getDataForElement:@"GetLeadsInboundsResult" Request:req :^(id json) {
+        NSMutableArray *leads = [[NSMutableArray alloc] init];
+        
+        NSArray *result = [json JSONValue];
+        for (id obj in result) {
+            Leads *ld = [[Leads alloc] initWithId:[obj valueForKey:@"ID"] address:[obj valueForKey:@"Address"] appDate:[obj valueForKey:@"ApptDate"] lastName:[obj valueForKey:@"LastName"] phone:[obj valueForKey:@"Phone"] product:[obj valueForKey:@"Product"]];
+            
+            [leads addObject:ld];
+        }
+        
+        
+        _OnSearchSuccess(leads);
+        
+    } :^(NSError *error) {
+        
+        
+        _OnSearchSuccess(nil);
+    }];
+}
 @end
 
 

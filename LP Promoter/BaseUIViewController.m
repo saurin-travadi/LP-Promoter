@@ -266,10 +266,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [data setObject:@"" forKey:@"UserName"];
     [data writeToFile: localSettingsPath atomically:YES];
 
-    //[self dismissModalViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:^{
-        //do nothing
-    }];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

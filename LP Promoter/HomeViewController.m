@@ -29,10 +29,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationItem.hidesBackButton = YES;
     
     UIBarButtonItem *logout = [super setBarButton:@"Log Out"];
-//    [logout setBackgroundImage:[UIImage imageNamed:@"logoutButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    self.navigationItem.rightBarButtonItem = logout;
     logout.target=self;
     logout.action=@selector(logout:);
     
@@ -51,9 +50,8 @@
     
     [self getMessages];
     
-    NSString * history = [[Utility alloc] retrieveFromUserSavedData:@"CanViewHistory"];
-    NSLog(@"%@",history);
-    [self thirdButton].enabled=NO;
+    NSString *history = [[Utility alloc] retrieveFromUserSavedData:@"CanViewHistory"];
+    [self thirdButton].enabled=[[history description] isEqualToString:@"1"]?YES:NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

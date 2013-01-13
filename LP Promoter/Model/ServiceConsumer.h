@@ -13,6 +13,7 @@
 #import "Settings.h"
 #import "DataList.h"
 #import "Lookup.h"
+#import "Leads.h"
 
 @interface ServiceConsumer : Consumer {
     
@@ -34,5 +35,7 @@
 -(void)getListByType:(NSString *)type UserInfo:(UserInfo *)userInfo :(void (^)(id))Success;
 
 -(void)getForwardLookup:(UserInfo *)userInfo branch:(NSString *)branch product:(NSString *)product zip:(NSString *)zip :(void (^)(id))Success;
+
+-(void)getLeads:(UserInfo *)userInfo :(void (^)(id))Success;
 
 @end

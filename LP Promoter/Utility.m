@@ -78,6 +78,4 @@
     [data writeToFile: localSettingsPath atomically:YES];
 }
 
-
-
 @end

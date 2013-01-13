@@ -81,13 +81,13 @@
                         <outlet property="logOnButton" destination="fyL-BK-7tU" id="QHj-dE-V7f"/>
                         <outlet property="password" destination="d0M-KY-vL7" id="Zdw-Wx-MDy"/>
                         <outlet property="userName" destination="xc9-ji-LVm" id="931-wj-apt"/>
-                        <segue destination="slh-k7-X0H" kind="modal" identifier="homeSegue" id="dGe-RM-HA5"/>
                         <segue destination="hXL-ox-mqc" kind="modal" identifier="infoSegue" modalTransitionStyle="partialCurl" id="86Q-C3-MKs"/>
+                        <segue destination="slh-k7-X0H" kind="modal" identifier="homeSegue" id="KTC-4b-LVK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QlQ-NF-Gg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2394" y="-3350"/>
+            <point key="canvasLocation" x="-2612" y="-3446"/>
         </scene>
         <!--Home View Controller - Home-->
         <scene sceneID="gt8-Rj-sDQ">
@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vto-GA-nns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1270" y="-3432"/>
+            <point key="canvasLocation" x="-1268" y="-3416"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VC1-Kh-wEV">
@@ -171,10 +171,10 @@
             </objects>
             <point key="canvasLocation" x="-834" y="-3756"/>
         </scene>
-        <!--Navigation View Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="QXr-Ke-2lB">
             <objects>
-                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="slh-k7-X0H" customClass="NavigationViewController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="slh-k7-X0H" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="0Bs-8a-GEr"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="blackOpaque"/>
@@ -188,12 +188,43 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="YyK-3f-7VB" kind="relationship" relationship="rootViewController" id="Oh2-2V-zMn"/>
+                        <segue destination="naF-bB-Bja" kind="relationship" relationship="rootViewController" id="EQw-K7-qXw"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWZ-Ya-Bx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1822" y="-3432"/>
+            <point key="canvasLocation" x="-2156" y="-3416"/>
+        </scene>
+        <!--Navigation View Controller - Welcome-->
+        <scene sceneID="AaW-4a-Q3V">
+            <objects>
+                <viewController id="naF-bB-Bja" customClass="NavigationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7TR-0n-L15">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="One moment please, we are retrieving account settings..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IhQ-iA-uDm">
+                                <rect key="frame" x="74" y="20" width="172" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.99999999999999989" contentMode="scaleToFill" image="Default.png" id="eHO-kG-8Wk">
+                                <rect key="frame" x="0.0" y="-88" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Welcome" id="C6F-yM-oYI"/>
+                    <connections>
+                        <segue destination="YyK-3f-7VB" kind="push" identifier="NaviagationSegue" id="lnO-P5-cWs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cx9-aU-EdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1708" y="-3469"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="Uae-XJ-SUc">
@@ -216,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hhb-Yg-wzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2895" y="-3332"/>
+            <point key="canvasLocation" x="-2995" y="-3434"/>
         </scene>
         <!--Lookup Grid View Controller-->
         <scene sceneID="Xps-On-faf">
@@ -264,16 +295,113 @@
             </objects>
             <point key="canvasLocation" x="-492" y="-3332"/>
         </scene>
-        <!--View Controller-->
+        <!--Leads View Controller-->
         <scene sceneID="zbH-5i-RBm">
             <objects>
-                <viewController id="cp4-7F-9oR" sceneMemberID="viewController">
+                <viewController id="cp4-7F-9oR" customClass="LeadsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uiE-wU-eyP">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="137" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jty-il-IPa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="137" id="hSc-Hu-HCL">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="137"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="2qC-hP-SXi">
+                                                    <rect key="frame" x="90" y="11" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="fvK-kg-MXN">
+                                                    <rect key="frame" x="90" y="32" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="thh-Hm-rGB">
+                                                    <rect key="frame" x="90" y="53" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="rFs-ar-gSi">
+                                                    <rect key="frame" x="90" y="76" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="x39-hu-Ic3">
+                                                    <rect key="frame" x="90" y="99" width="200" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="D66-Bb-9mX">
+                                                    <rect key="frame" x="6" y="12" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oOL-Hw-cRy">
+                                                    <rect key="frame" x="6" y="32" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Phone:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="VFK-vn-S0c">
+                                                    <rect key="frame" x="6" y="53" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Product:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="5KG-9T-na5">
+                                                    <rect key="frame" x="6" y="76" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Appt Dt:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="swZ-ji-Vcr">
+                                                    <rect key="frame" x="6" y="98" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cp4-7F-9oR" id="mNs-uv-htx"/>
+                                    <outlet property="delegate" destination="cp4-7F-9oR" id="blZ-ub-9hi"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="TpG-gL-7kx"/>
+                    <connections>
+                        <outlet property="tableView" destination="Jty-il-IPa" id="AeL-fG-6nj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeB-2e-495" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -516,7 +644,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1am-Vr-aXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1780" y="-2770"/>
+            <point key="canvasLocation" x="-2544" y="-2808"/>
         </scene>
     </scenes>
     <resources>
