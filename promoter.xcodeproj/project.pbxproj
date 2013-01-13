@@ -64,6 +64,7 @@
 		BF05B190168CD26D00C42BDE /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05B18E168CD1E600C42BDE /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF05B192168CD37300C42BDE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF05B191168CD37300C42BDE /* Security.framework */; };
 		BF05B1A4168CF4B800C42BDE /* LookupGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF05B1A3168CF4B800C42BDE /* LookupGridViewController.m */; };
+		BF13A2DE16A21BD10017E009 /* Lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A2DD16A21BD10017E009 /* Lookup.m */; };
 		BF2C95C2169E6FD60004E10D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433EE15E9E09700E27068 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C3169E6FDD0004E10D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F015E9E09700E27068 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C4169E6FE30004E10D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F215E9E09700E27068 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -80,7 +81,6 @@
 		BF2C960D16A12F1D0004E10D /* PFGridViewLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960316A12F1D0004E10D /* PFGridViewLabelCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C960E16A12F1D0004E10D /* PFGridViewSection+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960516A12F1D0004E10D /* PFGridViewSection+Internal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C960F16A12F1D0004E10D /* PFGridViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960716A12F1D0004E10D /* PFGridViewSection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BFED90E0168EA7E600D45BFD /* LookupGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFED90DF168EA7E600D45BFD /* LookupGridViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +174,8 @@
 		BF05B191168CD37300C42BDE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF05B1A2168CF4B800C42BDE /* LookupGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupGridViewController.h; sourceTree = "<group>"; };
 		BF05B1A3168CF4B800C42BDE /* LookupGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupGridViewController.m; sourceTree = "<group>"; };
+		BF13A2DC16A21BD10017E009 /* Lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lookup.h; sourceTree = "<group>"; };
+		BF13A2DD16A21BD10017E009 /* Lookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lookup.m; sourceTree = "<group>"; };
 		BF2C95D2169E74560004E10D /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		BF2C95D3169E74560004E10D /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		BF2C95D516A113AE0004E10D /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -196,7 +198,6 @@
 		BF2C960516A12F1D0004E10D /* PFGridViewSection+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFGridViewSection+Internal.m"; sourceTree = "<group>"; };
 		BF2C960616A12F1D0004E10D /* PFGridViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGridViewSection.h; sourceTree = "<group>"; };
 		BF2C960716A12F1D0004E10D /* PFGridViewSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGridViewSection.m; sourceTree = "<group>"; };
-		BFED90DF168EA7E600D45BFD /* LookupGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookupGridViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,7 +320,6 @@
 			children = (
 				BF05B183168CD07600C42BDE /* LocalSettings.plist */,
 				BF05B164168CCF1F00C42BDE /* AlternateLogin.xib */,
-				BFED90DF168EA7E600D45BFD /* LookupGridViewController.xib */,
 				BF05B156168CCDCE00C42BDE /* MainStoryboard.storyboard */,
 				BF05B113168CCD5000C42BDE /* Images */,
 				BF05B0F4168CCCC600C42BDE /* LP Promoter-Info.plist */,
@@ -383,6 +383,8 @@
 				BF2C95D616A113AE0004E10D /* Settings.m */,
 				BF2C95D816A129F30004E10D /* DataList.h */,
 				BF2C95D916A129F30004E10D /* DataList.m */,
+				BF13A2DC16A21BD10017E009 /* Lookup.h */,
+				BF13A2DD16A21BD10017E009 /* Lookup.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -510,7 +512,6 @@
 				BF05B157168CCDCE00C42BDE /* MainStoryboard.storyboard in Resources */,
 				BF05B165168CCF1F00C42BDE /* AlternateLogin.xib in Resources */,
 				BF05B184168CD07600C42BDE /* LocalSettings.plist in Resources */,
-				BFED90E0168EA7E600D45BFD /* LookupGridViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +552,7 @@
 				BF2C960D16A12F1D0004E10D /* PFGridViewLabelCell.m in Sources */,
 				BF2C960E16A12F1D0004E10D /* PFGridViewSection+Internal.m in Sources */,
 				BF2C960F16A12F1D0004E10D /* PFGridViewSection.m in Sources */,
+				BF13A2DE16A21BD10017E009 /* Lookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

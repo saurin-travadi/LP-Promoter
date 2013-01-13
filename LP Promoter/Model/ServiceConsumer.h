@@ -11,6 +11,7 @@
 #import "Consumer.h"
 #import "UserInfo.h"
 #import "Settings.h"
+#import "Lookup.h"
 
 @interface ServiceConsumer : Consumer {
     
@@ -30,5 +31,7 @@
 -(void)getLeadSettings:(UserInfo *)userInfo :(void (^)(id))Success;                 //lead settings, to be called after every login and every few hours
 
 -(void)getListByType:(NSString *)type UserInfo:(UserInfo *)userInfo :(void (^)(id))Success;
+
+-(void)getForwardLookup:(UserInfo *)userInfo branch:(NSString *)branch product:(NSString *)product zip:(NSString *)zip :(void (^)(id))Success;
 
 @end

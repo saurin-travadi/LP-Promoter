@@ -205,6 +205,54 @@
     }
 }
 
+-(void)getForwardLookup:(UserInfo *)userInfo branch:(NSString *)branch product:(NSString *)product zip:(NSString *)zip :(void (^)(id))Success {
+    
+    _OnSearchSuccess = [Success copy];
+    
+    NSString *soapMsg = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><GetLeadsForwardLook xmlns=\"http://webservice.leadperfection.com/\"><clientid>%@</clientid><username>%@</username><password>%@</password><branchid>%@</branchid><productid>%@</productid><zip>%@</zip></GetLeadsForwardLook></soap:Body></soap:Envelope>",userInfo.clientID,userInfo.userName,userInfo.password,branch,@"",@""];
+    
+    NSURL *url = [NSURL URLWithString: baseURL];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMsg length]];
+    [req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [req addValue:@"http://webservice.leadperfection.com/GetLeadsForwardLook" forHTTPHeaderField:@"SOAPAction"];
+    [req addValue:msgLength forHTTPHeaderField:@"Content-Length"];
+    [req setHTTPMethod:@"POST"];
+    [req setHTTPBody: [soapMsg dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self getDataForElement:@"GetLeadsForwardLookResult" Request:req :^(id json) {
+        NSMutableArray *lookup = [[NSMutableArray alloc] init];
+        
+        NSArray *result = [json JSONValue];
+        for (id obj in result) {
+            
+            [lookup addObject:
+                [[Lookup alloc] initWithDate:[obj valueForKey:@"DisplayDate"]
+                                        desc:[NSMutableArray arrayWithObjects:[obj valueForKey:@"TMS_Descr1"],
+                                              [obj valueForKey:@"TMS_Descr2"],
+                                              [obj valueForKey:@"TMS_Descr3"],
+                                              [obj valueForKey:@"TMS_Descr1"],
+                                              [obj valueForKey:@"TMS_Descr2"],
+                                              [obj valueForKey:@"TMS_Descr3"], nil]
+                                         val:[NSMutableArray arrayWithObjects:[obj valueForKey:@"T1"],
+                                              [obj valueForKey:@"T2"],
+                                              [obj valueForKey:@"T3"],
+                                              [obj valueForKey:@"T1"],
+                                              [obj valueForKey:@"T2"],
+                                              [obj valueForKey:@"T3"] ,nil]
+             ]];
+        }
+        
+        _OnSearchSuccess(lookup);
+        
+    } :^(NSError *error) {
+        
+        
+        _OnSearchSuccess(nil);
+    }];
+}
+
 @end
 
 

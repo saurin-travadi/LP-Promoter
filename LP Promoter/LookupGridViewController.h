@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseUIViewController.h"
 #import "PFGridView.h"
 
-@interface LookupGridViewController : UIViewController <PFGridViewDataSource, PFGridViewDelegate>
+@interface LookupGridViewController : BaseUIViewController <PFGridViewDataSource, PFGridViewDelegate>
 
 @property (nonatomic, strong) IBOutlet PFGridView *gridView;
 

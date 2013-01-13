@@ -7,9 +7,12 @@
 //
 
 #import "LookupGridViewController.h"
+#import "ServiceConsumer.h"
+#import "Lookup.h"
+#define ROWHEADERWIDTH  110;
 
 @implementation LookupGridViewController{
-    UIView *nView;
+    NSMutableArray *lookupTable;
 }
 
 - (id) init {
@@ -27,8 +30,6 @@
         // Custom initialization
     }
     return self;
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,14 +43,15 @@
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-        
-    self.gridView.cellHeight = 60.0f;
-    self.gridView.headerHeight = 60.0f;
+    [super viewWillAppear:animated];
     
-    [self.gridView reloadData];
+    self.gridView.frame=self.view.frame;
+    self.gridView.cellHeight = 30.0f;
+    self.gridView.headerHeight = 30.0f;
+    
+    [self getLookup];
 }
 
 - (void)viewDidUnload
@@ -69,6 +71,17 @@
     [self.gridView reloadData];
 }
 
+-(void)getLookup {
+    
+    [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:@"KNX" product:@"" zip:@"" :^(id json) {
+        lookupTable=json;
+        
+        [self.gridView reloadData];
+    }];
+
+}
+
+
 #pragma mark - PFGridViewDataSource
 
 - (NSUInteger)numberOfSectionsInGridView:(PFGridView *)gridView {
@@ -77,26 +90,34 @@
 
 - (CGFloat)widthForSection:(NSUInteger)section {
     if (section == 0) {
-        return 120.0f;
+        return ROWHEADERWIDTH;
     } else {
-        return self.gridView.frame.size.width - 120.0f;
+        return self.gridView.frame.size.width - ROWHEADERWIDTH;
     }
 }
 
 - (NSUInteger)numberOfRowsInGridView:(PFGridView *)gridView {
-    return 100;
+    return [lookupTable count];
 }
 
 - (NSUInteger)gridView:(PFGridView *)gridView numberOfColsInSection:(NSUInteger)section {
     if (section == 0) {
         return 1;
     } else {
-        return 6;
+        return [[lookupTable objectAtIndex:0] columnCount];
     }
 }
 
 - (CGFloat)gridView:(PFGridView *)gridView widthForColAtIndexPath:(PFGridIndexPath *)indexPath {
-    return 120;
+    if(indexPath.col==0 && indexPath.section==0){
+        return ROWHEADERWIDTH;
+    }
+    else
+    {
+        CGFloat width = self.gridView.frame.size.width - ROWHEADERWIDTH;
+        NSInteger cnt = [[lookupTable objectAtIndex:0] columnCount];
+        return width/cnt;
+    }
 }
 
 - (UIColor *) backgroundColorForIndexPath:(PFGridIndexPath *)indexPath {
@@ -130,35 +151,67 @@
     PFGridViewLabelCell *gridCell = (PFGridViewLabelCell *)[self.gridView dequeueReusableCellWithIdentifier:@"LABEL"];
     if (gridCell == nil) {
         gridCell = [[PFGridViewLabelCell alloc] initWithReuseIdentifier:@"LABEL"];
-        gridCell.textLabel.textAlignment = UITextAlignmentCenter;
-        gridCell.selectedBackgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.8 alpha:1];        
+
+        gridCell.selectedBackgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.8 alpha:1];
     }
-    gridCell.textLabel.text = [NSString stringWithFormat:@"%d-%d", indexPath.row,  indexPath.col];
+    
+    NSString *value=@"";
+    if(indexPath.section==0){
+        value=((Lookup *)[lookupTable objectAtIndex:indexPath.row]).displayDate;
+        gridCell.textLabel.textAlignment = UITextAlignmentLeft;
+    }
+    else{
+        value=[((Lookup *)[lookupTable objectAtIndex:indexPath.row]).tmsValue objectAtIndex:indexPath.col];
+        gridCell.textLabel.textAlignment = UITextAlignmentCenter;
+    }
+    
+    gridCell.textLabel.font = [UIFont systemFontOfSize:12];
+    gridCell.textLabel.text = [NSString stringWithFormat:@"%@", [value description]] ;
     gridCell.normalBackgroundColor = [self backgroundColorForIndexPath:indexPath];
+    
     return gridCell;
 }
 
 - (UIColor *)headerBackgroundColorForIndexPath:(PFGridIndexPath *)indexPath {
-    UIColor *result = nil;
-    if (indexPath.section == 0) {
-        result = [UIColor greenColor];
-    } else {
-        if (indexPath.col % 2) {
-            result = [UIColor colorWithRed:0.4 green:0.4 blue:1.0 alpha:1.0];        
-        } else {
-            result = [UIColor colorWithRed:0.5 green:0.5 blue:1.0 alpha:1.0];
-        }
-    }
-    return result;
+    return [UIColor blueColor];
 }
 
 - (PFGridViewCell *)gridView:(PFGridView *)gv headerForColAtIndexPath:(PFGridIndexPath *)indexPath {
     PFGridViewLabelCell *gridCell = (PFGridViewLabelCell *)[self.gridView dequeueReusableCellWithIdentifier:@"HEADER"];
     if (gridCell == nil) {
         gridCell = [[PFGridViewLabelCell alloc] initWithReuseIdentifier:@"HEADER"];
-        gridCell.textLabel.textAlignment = UITextAlignmentCenter;        
+        gridCell.textLabel.textAlignment = UITextAlignmentCenter;
+        gridCell.textLabel.textColor = [UIColor whiteColor];
     }
-    gridCell.textLabel.text = [NSString stringWithFormat:@"[ %d ]", indexPath.col];
+    
+    NSString *headerText = @"";
+    switch(indexPath.col){
+        case 0:{
+            if(indexPath.section==0)
+                headerText = @"Date";
+            else
+                headerText = @"Mor";
+            break;
+        }
+        case 1:{
+            headerText=@"Aft";
+            break;
+        }
+        case 2:{
+            break;
+        }
+        case 3:{
+            break;
+        }
+        case 4:{
+            break;
+        }
+        case 5:{
+            break;
+        }
+        
+    }
+    gridCell.textLabel.text = headerText;
     gridCell.normalBackgroundColor = [self headerBackgroundColorForIndexPath:indexPath];
     return gridCell;
 }
