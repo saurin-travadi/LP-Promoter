@@ -9,11 +9,24 @@
 #import "LookupGridViewController.h"
 #import "ServiceConsumer.h"
 #import "Lookup.h"
+#import "DataList.h"
+#import "Utility.h"
+
 #define ROWHEADERWIDTH  110;
+
 
 @implementation LookupGridViewController{
     NSMutableArray *lookupTable;
+    
+    NSMutableArray *branchList;
+    UIPickerView *picker;
+    UIActionSheet *actionSheet;
+    NSString* pickerValue;
+
 }
+
+@synthesize gridView;
+@synthesize branchText;
 
 - (id) init {
     
@@ -43,15 +56,27 @@
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
+-(void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    [[[ServiceConsumer alloc] init] getListByType:@"B" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
+        branchList = json;
+    }];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
     
-    self.gridView.frame=self.view.frame;
     self.gridView.cellHeight = 30.0f;
     self.gridView.headerHeight = 30.0f;
     
-    [self getLookup];
+    if (![branchText.text isEqualToString:@""]) {
+        [self getLookup];
+    }
 }
 
 - (void)viewDidUnload
@@ -72,11 +97,12 @@
 }
 
 -(void)getLookup {
-    
-    [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:@"KNX" product:@"" zip:@"" :^(id json) {
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:branchText.text product:@"" zip:@"" :^(id json) {
         lookupTable=json;
         
         [self.gridView reloadData];
+        [HUD hide:YES];
     }];
 
 }
@@ -128,23 +154,26 @@
         } else {
             result = [UIColor colorWithRed:0.8 green:1.0 blue:0.8 alpha:1.0];
         }
-    } else {
-        if (indexPath.row % 2) {
-            if (indexPath.col % 2) {
-                result = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
-            } else {
-                result = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1.0];
-                
-            }
-        } else {
-            if (indexPath.col % 2) {
-                result = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
-            } else {
-                result = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
-            }
-        }
+        return result;
     }
-    return result;
+//    else {
+//        if (indexPath.row % 2) {
+//            if (indexPath.col % 2) {
+//                result = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
+//            } else {
+//                result = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1.0];
+//                
+//            }
+//        } else {
+//            if (indexPath.col % 2) {
+//                result = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+//            } else {
+//                result = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
+//            }
+//        }
+//        result=[UIColor redColor];
+//    return result;
+//    }
 }
 
 - (PFGridViewCell *)gridView:(PFGridView *)gv cellForColAtIndexPath:(PFGridIndexPath *)indexPath {
@@ -159,15 +188,17 @@
     if(indexPath.section==0){
         value=((Lookup *)[lookupTable objectAtIndex:indexPath.row]).displayDate;
         gridCell.textLabel.textAlignment = UITextAlignmentLeft;
+        gridCell.normalBackgroundColor = [self backgroundColorForIndexPath:indexPath];
     }
     else{
         value=[((Lookup *)[lookupTable objectAtIndex:indexPath.row]).tmsValue objectAtIndex:indexPath.col];
         gridCell.textLabel.textAlignment = UITextAlignmentCenter;
+        gridCell.normalBackgroundColor = [value intValue]>0?[UIColor greenColor]:[UIColor redColor];
     }
     
     gridCell.textLabel.font = [UIFont systemFontOfSize:12];
     gridCell.textLabel.text = [NSString stringWithFormat:@"%@", [value description]] ;
-    gridCell.normalBackgroundColor = [self backgroundColorForIndexPath:indexPath];
+
     
     return gridCell;
 }
@@ -184,40 +215,95 @@
         gridCell.textLabel.textColor = [UIColor whiteColor];
     }
     
-    NSString *headerText = @"";
-    switch(indexPath.col){
-        case 0:{
-            if(indexPath.section==0)
-                headerText = @"Date";
-            else
-                headerText = @"Mor";
-            break;
-        }
-        case 1:{
-            headerText=@"Aft";
-            break;
-        }
-        case 2:{
-            break;
-        }
-        case 3:{
-            break;
-        }
-        case 4:{
-            break;
-        }
-        case 5:{
-            break;
-        }
-        
-    }
-    gridCell.textLabel.text = headerText;
+    NSString *value=[((Lookup *)[lookupTable objectAtIndex:0]).tmsDesc objectAtIndex:indexPath.col];
+    gridCell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+    gridCell.textLabel.text = value;
     gridCell.normalBackgroundColor = [self headerBackgroundColorForIndexPath:indexPath];
     return gridCell;
 }
 
 - (void)gridView:(PFGridView *)gridView didClickHeaderAtIndexPath:(PFGridIndexPath *)indexPath {
     NSLog(@"didClickHeaderAtIndexPath %@", indexPath);
+}
+
+#pragma mark - text field
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    [self addPickerButtons];
+    [textField setInputView:nil];
+    
+    [picker reloadAllComponents];
+    for (int i=0;i<[branchList count];i++) {
+        if([((DataList*)[branchList objectAtIndex:i]).value isEqualToString:textField.text])
+            [picker selectRow:i inComponent:0 animated:YES];
+    }
+}
+
+- (void)addPickerButtons {
+    
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+    
+    CGRect ToolBarFrame= CGRectMake(0, 0, 320, 44);
+    CGRect pickerFrame =  CGRectMake(0, 44, 320, 100);
+    picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    picker.delegate = self;
+    picker.dataSource = self;
+    picker.showsSelectionIndicator=YES;
+    
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:ToolBarFrame];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    [barItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pickerCancelPressed)]];
+    [barItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil]];
+    [barItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDonePressed)]];
+    
+    [pickerToolbar setItems:barItems animated:YES];
+    
+    [actionSheet addSubview:pickerToolbar];
+    [actionSheet addSubview:picker];
+    [actionSheet showInView:self.view];
+    [actionSheet setBounds:CGRectMake(0,0,320, 464)];
+}
+
+-(void) pickerDonePressed {
+    [branchText resignFirstResponder];
+    
+    branchText.text = @"KNX";   //pickerValue;
+    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    [self getLookup];
+}
+
+-(void) pickerCancelPressed {
+    [branchText resignFirstResponder];
+    
+    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+
+#pragma mark PickerView DataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    pickerValue = branchText.text;
+    return [branchList count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return ((DataList *)[branchList objectAtIndex:row]).value;
+}
+
+#pragma mark -
+#pragma mark PickerView Delegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    pickerValue = ((DataList *)[branchList objectAtIndex:row]).value;
 }
 
 @end

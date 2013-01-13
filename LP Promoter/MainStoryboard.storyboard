@@ -203,7 +203,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="default.png" id="GYA-rX-L7J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Default.png" id="GYA-rX-L7J">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -227,19 +227,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="855-31-kX0" customClass="PFGridView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <rect key="frame" x="10" y="48" width="300" height="324"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.88637907608695654" green="0.88637907608695654" blue="0.88637907608695654" alpha="0.27000000000000002" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="GKa-dw-Bn4" id="MSU-2V-iBG"/>
                                     <outlet property="delegate" destination="GKa-dw-Bn4" id="V09-hf-MSI"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Market" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zqa-5e-bOs">
+                                <rect key="frame" x="10" y="14" width="58" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="l7H-hX-RD1" customClass="NextUITextField">
+                                <rect key="frame" x="73" y="9" width="236" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="GKa-dw-Bn4" id="xEA-Me-KEk"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="4Ay-Fy-OPN"/>
                     <connections>
+                        <outlet property="branchText" destination="l7H-hX-RD1" id="6ld-7o-nNo"/>
                         <outlet property="gridView" destination="855-31-kX0" id="Wl7-2E-Fyv"/>
                     </connections>
                 </viewController>
@@ -504,10 +521,10 @@
     </scenes>
     <resources>
         <image name="BottomBar.png" width="320" height="49"/>
+        <image name="Default.png" width="320" height="480"/>
         <image name="appointment.png" width="61" height="40"/>
         <image name="chart.png" width="40" height="40"/>
         <image name="currency.png" width="23" height="40"/>
-        <image name="default.png" width="320" height="480"/>
         <image name="login.png" width="320" height="480"/>
         <image name="welcome.png" width="220" height="18"/>
     </resources>

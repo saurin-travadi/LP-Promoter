@@ -31,10 +31,10 @@
 	// Do any additional setup after loading the view.
     
     [self getSettings];
-//    [self getBranches];
-//    [self getProducts];
-//    [self getPromoters];
-//    [self getSources];
+    [self getBranches];
+    [self getProducts];
+    [self getPromoters];
+    [self getSources];
 }
 
 
@@ -63,28 +63,24 @@
 -(void)getBranches {
 
     [[[ServiceConsumer alloc] init] getListByType:@"B" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
-        [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_B" Data:[json description]];
     }];
 }
 
 -(void)getProducts {
 
     [[[ServiceConsumer alloc] init] getListByType:@"R" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
-       [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_R" Data:[json description]];
     }];
 }
 
 -(void)getPromoters {
     
     [[[ServiceConsumer alloc] init] getListByType:@"P" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
-               [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_P" Data:[json description]];
     }];
 }
 
 -(void)getSources {
     
     [[[ServiceConsumer alloc] init] getListByType:@"S" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
-       [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_S" Data:[json description]];
     }];
 }
 

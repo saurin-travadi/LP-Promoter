@@ -73,6 +73,7 @@
 #pragma mark - Internal
 - (void)setupScrollView:(UIScrollView *)scrollView {
     scrollView.delegate = self;
+    scrollView.bounces=NO;
     scrollView.clipsToBounds = YES;
     scrollView.directionalLockEnabled = owner.directionalLockEnabled;
     scrollView.scrollEnabled = YES;

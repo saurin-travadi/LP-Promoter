@@ -30,4 +30,20 @@
     textLabel.frame = labelFrame;
 }
 
+-(void)drawRect:(CGRect)rect {
+    CGContextRef ctx = UIGraphicsGetCurrentContext(); //get the graphics context
+    
+    CGContextSetRGBFillColor(ctx, 1, 0, 0, 1);
+    CGContextMoveToPoint(ctx, 0, 0);
+    CGContextAddLineToPoint( ctx, 0,100);
+    CGContextStrokePath(ctx);
+
+
+    CGContextMoveToPoint(ctx, 0, textLabel.frame.size.height);
+    CGContextAddRect(ctx, CGRectMake(0, textLabel.frame.size.height, textLabel.frame.size.width, 1));
+    CGContextStrokePath(ctx);
+
+
+}
+
 @end

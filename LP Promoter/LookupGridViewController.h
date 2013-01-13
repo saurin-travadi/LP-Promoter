@@ -10,9 +10,9 @@
 #import "BaseUIViewController.h"
 #import "PFGridView.h"
 
-@interface LookupGridViewController : BaseUIViewController <PFGridViewDataSource, PFGridViewDelegate>
+@interface LookupGridViewController : BaseUIViewController <PFGridViewDataSource, PFGridViewDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) IBOutlet PFGridView *gridView;
-
+@property (strong, nonatomic) IBOutlet UITextField *branchText;
 
 @end

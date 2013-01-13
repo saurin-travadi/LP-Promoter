@@ -11,6 +11,7 @@
 #import "Consumer.h"
 #import "UserInfo.h"
 #import "Settings.h"
+#import "DataList.h"
 #import "Lookup.h"
 
 @interface ServiceConsumer : Consumer {

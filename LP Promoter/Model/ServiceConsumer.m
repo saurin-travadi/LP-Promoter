@@ -188,11 +188,17 @@
         [req setHTTPBody: [soapMsg dataUsingEncoding:NSUTF8StringEncoding]];
         
         [self getDataForElement:@"GetLeadsSourceSubPromoterResult" Request:req :^(id json) {
-            
+            if (json!=nil) {
+                [[Utility alloc] saveToUserSavedDataWithKey:@"DataList_B" Data:[json description]];
+            }
+
+            NSMutableArray *data = [[NSMutableArray alloc] init];
             NSArray *result = [json JSONValue];
+            for (id obj in result) {
+                [data addObject:[[DataList alloc] initWithKey:[obj valueForKey:@"key"] value:[obj valueForKey:@"value"]]];
+            }
             
-            
-            _OnSearchSuccess(nil);
+            _OnSearchSuccess(data);
             
         } :^(NSError *error) {
 
@@ -201,6 +207,14 @@
         }];
     }
     else{
+
+        NSMutableArray *data = [[NSMutableArray alloc] init];
+        NSArray *result = [jsonString JSONValue];
+        for (id obj in result) {
+            [data addObject:[[DataList alloc] initWithKey:[obj valueForKey:@"key"] value:[obj valueForKey:@"value"]]];
+        }
+        
+        _OnSearchSuccess(data);
         
     }
 }
@@ -232,15 +246,15 @@
                                         desc:[NSMutableArray arrayWithObjects:[obj valueForKey:@"TMS_Descr1"],
                                               [obj valueForKey:@"TMS_Descr2"],
                                               [obj valueForKey:@"TMS_Descr3"],
-                                              [obj valueForKey:@"TMS_Descr1"],
-                                              [obj valueForKey:@"TMS_Descr2"],
-                                              [obj valueForKey:@"TMS_Descr3"], nil]
+                                              [obj valueForKey:@"TMS_Descr4"],
+                                              [obj valueForKey:@"TMS_Descr5"],
+                                              [obj valueForKey:@"TMS_Descr6"], nil]
                                          val:[NSMutableArray arrayWithObjects:[obj valueForKey:@"T1"],
                                               [obj valueForKey:@"T2"],
                                               [obj valueForKey:@"T3"],
-                                              [obj valueForKey:@"T1"],
-                                              [obj valueForKey:@"T2"],
-                                              [obj valueForKey:@"T3"] ,nil]
+                                              [obj valueForKey:@"T4"],
+                                              [obj valueForKey:@"T5"],
+                                              [obj valueForKey:@"T6"] ,nil]
              ]];
         }
         
