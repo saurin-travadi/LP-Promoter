@@ -34,6 +34,7 @@
 	// Do any additional setup after loading the view.
     
     [self.view bringSubviewToFront:[self.view viewWithTag:100]];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -51,10 +52,6 @@
         bLoad=NO;
         
         [self getSettings];
-        //[self getBranches];
-        //[self getProducts];
-        //[self getPromoters];
-        //[self getSources];
         
         [self performSelector:@selector(didSettingsLoad) withObject:nil afterDelay:1.0];
 

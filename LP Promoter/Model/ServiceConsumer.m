@@ -294,6 +294,9 @@
         }
         
         
+        Leads *ld = [[Leads alloc] initWithId:@"1" address:@"123 Main st." appDate:@"Fri 12/28 2pm" lastName:@"Doe" phone:@"773-255-7073" product:@"Roof"];
+        [leads addObject:ld];
+        
         _OnSearchSuccess(leads);
         
     } :^(NSError *error) {

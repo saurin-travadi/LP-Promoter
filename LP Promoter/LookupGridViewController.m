@@ -156,24 +156,8 @@
         }
         return result;
     }
-//    else {
-//        if (indexPath.row % 2) {
-//            if (indexPath.col % 2) {
-//                result = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
-//            } else {
-//                result = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1.0];
-//                
-//            }
-//        } else {
-//            if (indexPath.col % 2) {
-//                result = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
-//            } else {
-//                result = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
-//            }
-//        }
-//        result=[UIColor redColor];
-//    return result;
-//    }
+    else
+        return [UIColor clearColor];
 }
 
 - (PFGridViewCell *)gridView:(PFGridView *)gv cellForColAtIndexPath:(PFGridIndexPath *)indexPath {
@@ -197,6 +181,7 @@
     }
     
     gridCell.textLabel.font = [UIFont systemFontOfSize:12];
+    //gridCell.textLabel.lineBreakMode=NSLineBreakByClipping;
     gridCell.textLabel.text = [NSString stringWithFormat:@"%@", [value description]] ;
 
     
@@ -215,9 +200,16 @@
         gridCell.textLabel.textColor = [UIColor whiteColor];
     }
     
-    NSString *value=[((Lookup *)[lookupTable objectAtIndex:0]).tmsDesc objectAtIndex:indexPath.col];
+    NSString *value;
+    if(indexPath.section==0){
+        value = @"Date";
+    }
+    else{
+        value=[((Lookup *)[lookupTable objectAtIndex:0]).tmsDesc objectAtIndex:indexPath.col];
+    }
     gridCell.textLabel.font = [UIFont boldSystemFontOfSize:12];
     gridCell.textLabel.text = value;
+    gridCell.textLabel.lineBreakMode=NSLineBreakByClipping;
     gridCell.normalBackgroundColor = [self headerBackgroundColorForIndexPath:indexPath];
     return gridCell;
 }

@@ -9,7 +9,7 @@
 }
 
 
-@synthesize tableView;
+@synthesize tableView, lblStatus;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +52,7 @@
     [[[ServiceConsumer alloc] init] getLeads:[super getUserInfo] :^(id json) {
         
         leads = json;
+        lblStatus.text = [NSString stringWithFormat:@"You submitted %d leads today", leads.count];
         [self.tableView reloadData];
         
         [HUD hide:YES];

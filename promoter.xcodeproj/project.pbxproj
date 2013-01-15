@@ -71,6 +71,7 @@
 		BF13A2E416A27AB20017E009 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF13A2E316A27AB20017E009 /* Default@2x.png */; };
 		BF13A2EF16A29BE40017E009 /* LeadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A2EE16A29BE40017E009 /* LeadsViewController.m */; };
 		BF13A2F316A29D930017E009 /* Leads.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A2F216A29D930017E009 /* Leads.m */; };
+		BF13A2FF16A5060F0017E009 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF13A2FE16A5060F0017E009 /* Default-568h@2x.png */; };
 		BF2C95C2169E6FD60004E10D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433EE15E9E09700E27068 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C3169E6FDD0004E10D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F015E9E09700E27068 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C4169E6FE30004E10D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F215E9E09700E27068 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -186,6 +187,7 @@
 		BF13A2EE16A29BE40017E009 /* LeadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadsViewController.m; sourceTree = "<group>"; };
 		BF13A2F116A29D930017E009 /* Leads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leads.h; sourceTree = "<group>"; };
 		BF13A2F216A29D930017E009 /* Leads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leads.m; sourceTree = "<group>"; };
+		BF13A2FE16A5060F0017E009 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BF2C95D2169E74560004E10D /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		BF2C95D3169E74560004E10D /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		BF2C95D516A113AE0004E10D /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		708433BD15E9DEFC00E27068 = {
 			isa = PBXGroup;
 			children = (
+				BF13A2FE16A5060F0017E009 /* Default-568h@2x.png */,
 				BF13A2E316A27AB20017E009 /* Default@2x.png */,
 				BF13A2E116A27AA70017E009 /* Default.png */,
 				703650B315F8246100714423 /* Settings.bundle */,
@@ -530,6 +533,7 @@
 				BF13A2E016A277170017E009 /* icon@2x.png in Resources */,
 				BF13A2E216A27AA70017E009 /* Default.png in Resources */,
 				BF13A2E416A27AB20017E009 /* Default@2x.png in Resources */,
+				BF13A2FF16A5060F0017E009 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +600,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saurin Travadi (B39P29YN4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -612,7 +616,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7A91E5D-66B7-471E-8A02-88108B706B3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -623,7 +627,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saurin Travadi (B39P29YN4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -633,7 +637,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7A91E5D-66B7-471E-8A02-88108B706B3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -647,7 +651,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saurin Travadi (B39P29YN4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LP Promoter/LP Promoter-Prefix.pch";
 				INFOPLIST_FILE = "LP Promoter/LP Promoter-Info.plist";
@@ -661,7 +665,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7A91E5D-66B7-471E-8A02-88108B706B3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -674,7 +678,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Saurin Travadi (B39P29YN4Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LP Promoter/LP Promoter-Prefix.pch";
 				INFOPLIST_FILE = "LP Promoter/LP Promoter-Info.plist";
@@ -688,7 +692,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7A91E5D-66B7-471E-8A02-88108B706B3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
