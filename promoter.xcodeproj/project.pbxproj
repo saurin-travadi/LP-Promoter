@@ -72,6 +72,7 @@
 		BF13A2EF16A29BE40017E009 /* LeadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A2EE16A29BE40017E009 /* LeadsViewController.m */; };
 		BF13A2F316A29D930017E009 /* Leads.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A2F216A29D930017E009 /* Leads.m */; };
 		BF13A2FF16A5060F0017E009 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF13A2FE16A5060F0017E009 /* Default-568h@2x.png */; };
+		BF13A30E16A652040017E009 /* NewLeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13A30D16A652040017E009 /* NewLeadViewController.m */; };
 		BF2C95C2169E6FD60004E10D /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433EE15E9E09700E27068 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C3169E6FDD0004E10D /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F015E9E09700E27068 /* NSString+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C95C4169E6FE30004E10D /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 708433F215E9E09700E27068 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -188,6 +189,8 @@
 		BF13A2F116A29D930017E009 /* Leads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leads.h; sourceTree = "<group>"; };
 		BF13A2F216A29D930017E009 /* Leads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leads.m; sourceTree = "<group>"; };
 		BF13A2FE16A5060F0017E009 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BF13A30C16A652040017E009 /* NewLeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLeadViewController.h; sourceTree = "<group>"; };
+		BF13A30D16A652040017E009 /* NewLeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLeadViewController.m; sourceTree = "<group>"; };
 		BF2C95D2169E74560004E10D /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		BF2C95D3169E74560004E10D /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		BF2C95D516A113AE0004E10D /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				BF05B1A3168CF4B800C42BDE /* LookupGridViewController.m */,
 				BF13A2ED16A29BE40017E009 /* LeadsViewController.h */,
 				BF13A2EE16A29BE40017E009 /* LeadsViewController.m */,
+				BF13A30C16A652040017E009 /* NewLeadViewController.h */,
+				BF13A30D16A652040017E009 /* NewLeadViewController.m */,
 				BF05B0FB168CCCC600C42BDE /* AppDelegate.h */,
 				BF05B0FC168CCCC600C42BDE /* AppDelegate.m */,
 				BF05B0F3168CCCC600C42BDE /* Supporting Files */,
@@ -577,6 +582,7 @@
 				BF13A2DE16A21BD10017E009 /* Lookup.m in Sources */,
 				BF13A2EF16A29BE40017E009 /* LeadsViewController.m in Sources */,
 				BF13A2F316A29D930017E009 /* Leads.m in Sources */,
+				BF13A30E16A652040017E009 /* NewLeadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
