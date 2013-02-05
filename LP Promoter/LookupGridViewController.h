@@ -12,6 +12,9 @@
 
 @interface LookupGridViewController : BaseUIViewController <PFGridViewDataSource, PFGridViewDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (nonatomic, strong) NSString *productId;
+@property (nonatomic, strong) NSString *zip;
+
 @property (nonatomic, strong) IBOutlet PFGridView *gridView;
 @property (strong, nonatomic) IBOutlet UITextField *branchText;
 

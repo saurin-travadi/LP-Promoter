@@ -11,6 +11,30 @@
 @interface NewLeadViewController : BaseUIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *mainContainer;
+
+@property  (strong,nonatomic) IBOutlet UITextField *firstName;
+@property  (strong,nonatomic) IBOutlet UITextField *lastName;
+@property  (strong,nonatomic) IBOutlet UITextField *homePhone;
+@property  (strong,nonatomic) IBOutlet UITextField *workPhone;
+@property  (strong,nonatomic) IBOutlet UITextField *cellPhone;
+@property  (strong,nonatomic) IBOutlet UITextField *address;
+@property  (strong,nonatomic) IBOutlet UITextField *city;
+@property  (strong,nonatomic) IBOutlet UITextField *state;
+@property  (strong,nonatomic) IBOutlet UITextField *zip;
+@property  (strong,nonatomic) IBOutlet UITextField *source;
+@property  (strong,nonatomic) IBOutlet UITextField *promoter;
+@property  (strong,nonatomic) IBOutlet UITextField *product;
+@property  (strong,nonatomic) IBOutlet UITextField *altData1;
+@property  (strong,nonatomic) IBOutlet UITextField *altData2;
+@property  (strong,nonatomic) IBOutlet UITextField *appDate;
+@property  (strong,nonatomic) IBOutlet UITextField *appTime;
+@property  (strong,nonatomic) IBOutlet UISwitch *waiver;
 @property (strong, nonatomic) IBOutlet UITextView *comments;
+
+@property  (strong, nonatomic) IBOutlet UIButton *update;
+@property (strong, nonatomic) IBOutlet UIButton *check;
+
+-(IBAction)didCheckAvailibilityClick:(id)sender;
+-(IBAction)didSubmitClick:(id)sender;
 
 @end

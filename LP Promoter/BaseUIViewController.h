@@ -24,6 +24,7 @@
 -(void)makeRoundRect:(UIButton*)sender;
 -(void)makeRoundRectView:(UIView*)view;
 -(void)logout;
+-(void)setBackButton;
 
 -(UIBarButtonItem*)setBarButton:(NSString*)title;
 

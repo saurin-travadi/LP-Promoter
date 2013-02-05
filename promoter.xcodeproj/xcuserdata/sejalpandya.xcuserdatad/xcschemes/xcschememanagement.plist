@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>sales and tracking.xcscheme</key>
+		<key>LP Promoter.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>708433C715E9DEFC00E27068</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF05B0EA168CCCC600C42BDE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -19,6 +19,7 @@
     NSMutableArray *lookupTable;
     
     NSMutableArray *branchList;
+    
     UIPickerView *picker;
     UIActionSheet *actionSheet;
     NSString* pickerValue;
@@ -58,12 +59,15 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 
 -(void)viewDidLoad {
+    [self setBackButton];
     
     [super viewDidLoad];
     
     [[[ServiceConsumer alloc] init] getListByType:@"B" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
         branchList = json;
+        [branchList insertObject:[[DataList alloc] initWithKey:@"" value:@""]  atIndex:0];
     }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -261,11 +265,14 @@
 }
 
 -(void) pickerDonePressed {
+    
     [branchText resignFirstResponder];
     
-    branchText.text = @"KNX";   //pickerValue;
+    branchText.text = pickerValue;
     [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-    [self getLookup];
+    
+    if(![branchText.text isEqualToString:@""])
+        [self getLookup];
 }
 
 -(void) pickerCancelPressed {
@@ -289,12 +296,14 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSLog(@"%@",((DataList *)[branchList objectAtIndex:row]).value);
     return ((DataList *)[branchList objectAtIndex:row]).value;
 }
 
 #pragma mark -
 #pragma mark PickerView Delegate
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSLog(@"%@",((DataList *)[branchList objectAtIndex:row]).value);
     pickerValue = ((DataList *)[branchList objectAtIndex:row]).value;
 }
 

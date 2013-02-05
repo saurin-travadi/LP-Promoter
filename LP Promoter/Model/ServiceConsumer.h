@@ -38,4 +38,6 @@
 
 -(void)getLeads:(UserInfo *)userInfo :(void (^)(id))Success;
 
+-(void)updateLead:(UserInfo *)userInfo firstName:(NSString*)fname lastName:(NSString*)lname homePhone:(NSString*)homePhone workPhone:(NSString*)workPhone cellPhone:(NSString*)cellPhone address:(NSString*)address city:(NSString*)city state:(NSString*)state zip:(NSInteger)zip email:(NSString*)email source:(NSInteger)source promoter:(NSInteger)promoter product:(NSString*)product altData1:(NSString*)altData1 altData2:(NSString*)altData2 appDate:(NSString*)appDate appTime:(NSString*)appTime waiver:(NSInteger)waiver notes:(NSString*)notes :(void (^)(bool*))Success;
+
 @end

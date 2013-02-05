@@ -305,6 +305,37 @@
         _OnSearchSuccess(nil);
     }];
 }
+
+-(void)updateLead:(UserInfo *)userInfo firstName:(NSString*)fname lastName:(NSString*)lname homePhone:(NSString*)homePhone workPhone:(NSString*)workPhone cellPhone:(NSString*)cellPhone address:(NSString*)address city:(NSString*)city state:(NSString*)state zip:(NSInteger)zip email:(NSString*)email source:(NSInteger)source promoter:(NSInteger)promoter product:(NSString*)product altData1:(NSString*)altData1 altData2:(NSString*)altData2 appDate:(NSString*)appDate appTime:(NSString*)appTime waiver:(NSInteger)waiver notes:(NSString*)notes :(void (^)(bool*))Success {
+    
+    _OnLoginSuccess = [Success copy];
+    
+    NSString *soapMsg = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UpdateLeadsPerspectiveDetail xmlns=\"http://webservice.leadperfection.com/\"><clientid>%@</clientid><username>%@</username><password>%@</password><lastname>%@</lastname><firstname>%@</firstname><phone>%@</phone><workphone>%@</workphone><cellphone>%@</cellphone><address1>%@</address1><city>%@</city><state>%@</state><zip>%d</zip><email>%@</email><SourceSubID>%d</SourceSubID><PromoterID>%d</PromoterID><productid>%@</productid><altdata1>%@</altdata1><altdata2>%@</altdata2><apptdate>%@</apptdate><appttime>%@</appttime><waiver>%d</waiver><notes>%@</notes></UpdateLeadsPerspectiveDetail></soap:Body></soap:Envelope>",userInfo.clientID,userInfo.userName,userInfo.password, lname, fname, homePhone, workPhone, cellPhone, address, city, state, zip, email, source, promoter, product, altData1, altData2, appDate, appTime, waiver, notes];
+    
+    NSURL *url = [NSURL URLWithString: baseURL];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMsg length]];
+    [req addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [req addValue:@"http://webservice.leadperfection.com/UpdateLeadsPerspectiveDetail" forHTTPHeaderField:@"SOAPAction"];
+    [req addValue:msgLength forHTTPHeaderField:@"Content-Length"];
+    [req setHTTPMethod:@"POST"];
+    [req setHTTPBody: [soapMsg dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self getDataForElement:@"UpdateLeadsPerspectiveDetailResult" Request:req :^(id json) {
+        NSString* result = [NSString stringWithFormat:@"%@",[json description]];
+        
+        bool success = true;
+        if([result isEqualToString:@"\"NOT VALID USER\""])
+            success=false;
+        
+        _OnLoginSuccess(&success);
+    } :^(NSError *error) {
+        bool success = false;
+        _OnLoginSuccess(&success);
+    }];
+}
+
 @end
 
 
