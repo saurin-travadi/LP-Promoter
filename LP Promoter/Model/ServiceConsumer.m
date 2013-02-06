@@ -293,10 +293,6 @@
             [leads addObject:ld];
         }
         
-        
-        Leads *ld = [[Leads alloc] initWithId:@"1" address:@"123 Main st." appDate:@"Fri 12/28 2pm" lastName:@"Doe" phone:@"773-255-7073" product:@"Roof"];
-        [leads addObject:ld];
-        
         _OnSearchSuccess(leads);
         
     } :^(NSError *error) {
@@ -311,7 +307,7 @@
     _OnLoginSuccess = [Success copy];
     
     NSString *soapMsg = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UpdateLeadsPerspectiveDetail xmlns=\"http://webservice.leadperfection.com/\"><clientid>%@</clientid><username>%@</username><password>%@</password><lastname>%@</lastname><firstname>%@</firstname><phone>%@</phone><workphone>%@</workphone><cellphone>%@</cellphone><address1>%@</address1><city>%@</city><state>%@</state><zip>%d</zip><email>%@</email><SourceSubID>%d</SourceSubID><PromoterID>%d</PromoterID><productid>%@</productid><altdata1>%@</altdata1><altdata2>%@</altdata2><apptdate>%@</apptdate><appttime>%@</appttime><waiver>%d</waiver><notes>%@</notes></UpdateLeadsPerspectiveDetail></soap:Body></soap:Envelope>",userInfo.clientID,userInfo.userName,userInfo.password, lname, fname, homePhone, workPhone, cellPhone, address, city, state, zip, email, source, promoter, product, altData1, altData2, appDate, appTime, waiver, notes];
-    
+
     NSURL *url = [NSURL URLWithString: baseURL];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     
@@ -326,7 +322,7 @@
         NSString* result = [NSString stringWithFormat:@"%@",[json description]];
         
         bool success = true;
-        if([result isEqualToString:@"\"NOT VALID USER\""])
+        if(![result isEqualToString:@"\"UPDATED SUCCESSFULLY!\""])
             success=false;
         
         _OnLoginSuccess(&success);

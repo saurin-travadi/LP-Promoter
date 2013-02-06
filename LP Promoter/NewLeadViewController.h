@@ -8,7 +8,7 @@
 
 #import "BaseUIViewController.h"
 
-@interface NewLeadViewController : BaseUIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface NewLeadViewController : BaseUIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *mainContainer;
 

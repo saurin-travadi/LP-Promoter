@@ -9,6 +9,7 @@
 #import "NewLeadViewController.h"
 #import "LookupGridViewController.h"
 #import "ServiceConsumer.h"
+#import "NextUITextField.h"
 
 @implementation NewLeadViewController {
     CGPoint svos;
@@ -132,11 +133,21 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
     
+    BOOL didResign = [textField resignFirstResponder];
+    if (!didResign) return NO;
+
     //change frame for scrollview for keyboard shown
     [self.mainContainer setContentOffset:svos animated:YES];
-    [textField resignFirstResponder];
+
+    if ([textField isKindOfClass:[NextUITextField class]]) {
+        if (((NextUITextField *) textField).nextField != nil)
+            [((NextUITextField *) textField).nextField becomeFirstResponder];
+        else {
+            [self didSubmitClick:nil];
+        }
+    }
+    
     return YES;
 }
 
@@ -341,10 +352,48 @@
 
 -(IBAction)didSubmitClick:(id)sender {
     
-    [[ServiceConsumer alloc] updateLead:[super getUserInfo] firstName:self.firstName.text lastName:self.lastName.text homePhone:self.homePhone.text workPhone:self.workPhone.text cellPhone:self.cellPhone.text address:self.address.text city:self.city.text state:self.state.text zip:[self.zip.text intValue] email:@"" source:[self.source.text intValue] promoter:[self.promoter.text intValue] product:self.product.text altData1:self.altData1.text altData2:self.altData2.text appDate:self.appDate.text appTime:self.appTime.text waiver:self.waiver.on notes:self.comments.text :^(bool *success) {
+    [[[ServiceConsumer alloc] init] updateLead:[super getUserInfo] firstName:self.firstName.text lastName:self.lastName.text homePhone:self.homePhone.text workPhone:self.workPhone.text cellPhone:self.cellPhone.text address:self.address.text city:self.city.text state:self.state.text zip:[self.zip.text intValue] email:@"" source:[self.source.text intValue] promoter:[self.promoter.text intValue] product:self.product.text altData1:self.altData1.text altData2:self.altData2.text appDate:self.appDate.text appTime:self.appTime.text waiver:self.waiver.on notes:self.comments.text :^(bool *success) {
         
-        NSLog(@"Done");
+        if(*success){
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
+                                                              message:@"Record Saved"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
+        else {
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
+                                                              message:@"Unabled to save current record"
+                                                             delegate:nil                                   //dont set delegate, dont want to handle it
+                                                    cancelButtonTitle:@"Try Again"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
     }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"OK"])
+    {
+       self.firstName.text=@"";
+       self.lastName.text=@"";
+       self.homePhone.text=@"";
+       self.workPhone.text=@"";
+       self.cellPhone.text=@"";
+       self.address.text=@"";
+       self.city.text=@"";
+       self.state.text=@"";
+       self.zip.text=@"";
+       self.altData1.text=@"";
+       self.altData2.text=@"";
+       self.appDate.text=@"";
+       self.appTime.text=@"";
+       self.comments.text=@"";
+    }
 }
 
 @end
