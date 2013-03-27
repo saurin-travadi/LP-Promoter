@@ -14,8 +14,9 @@
 @synthesize displayDate=_displayDate;
 @synthesize tmsDesc=_tmsDesc;
 @synthesize tmsValue=_tmsValue;
+@synthesize branchId=_branchId;
 
--(id)initWithDate:(NSString*)date desc:(NSMutableArray*)desc val:(NSMutableArray*)val {
+-(id)initWithDate:(NSString*)date desc:(NSMutableArray*)desc val:(NSMutableArray*)val branch:(NSString *)branchId {
     
     self = [super init];
     if (self) {
@@ -23,6 +24,7 @@
         _displayDate=date;
         _tmsDesc=desc;
         _tmsValue=val;
+        _branchId=branchId;
         
         return self;
     }

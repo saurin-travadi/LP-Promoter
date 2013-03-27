@@ -236,7 +236,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     NSMutableDictionary *project = [[NSMutableDictionary alloc] initWithContentsOfFile: localSettingsPath];
     NSString *settingsUserName = [project objectForKey:@"UserName"];
     
-    if(settingsUserName!=nil && settingsUserName!=@"") {
+    if(settingsUserName!=nil && ![settingsUserName isEqualToString:@""]) {
 
         NSError *error = nil;
         NSString *savedPassword = [SFHFKeychainUtils getPasswordForUsername:settingsUserName andServiceName:@"leadperfection" error:&error];

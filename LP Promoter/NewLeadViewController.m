@@ -10,6 +10,7 @@
 #import "LookupGridViewController.h"
 #import "ServiceConsumer.h"
 #import "NextUITextField.h"
+#import "Utility.h"
 
 @implementation NewLeadViewController {
     CGPoint svos;
@@ -23,7 +24,6 @@
     UIButton *doneButton;
 
     UIDatePicker *datePicker;
-    
 }
 
 @synthesize mainContainer;
@@ -43,8 +43,77 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.navigationController setToolbarHidden:YES];
+    
     mainContainer.frame = self.view.bounds;
-    mainContainer.contentSize = CGSizeMake(self.view.bounds.size.width, 787);
+    CGFloat mainContainerContentSizeHeight = 787;
+    
+    CGRect frame;
+    NSString *promoterVisible = [Utility retrieveFromUserDefaults:@"PromoterDropdownVisible"];
+    if(promoterVisible==nil || ![promoterVisible boolValue]){
+        [self.promoterLabel setHidden:YES];
+        [self.promoter setHidden:YES];
+        
+        frame = self.productLabel.frame;
+        frame.origin.y=42;
+        self.productLabel.frame=frame;
+        
+        frame=self.product.frame;
+        frame.origin.y=37;
+        self.product.frame=frame;
+        
+        frame=self.promoterView.frame;
+        frame.size.height=70;
+        self.promoterView.frame=frame;
+        
+        frame=self.altView.frame;
+        frame.origin.y-=36;
+        self.altView.frame=frame;
+    }
+    
+    
+    NSString *altData1 = [Utility retrieveFromUserDefaults:@"AltData1"];
+    NSString *altData2 = [Utility retrieveFromUserDefaults:@"AltData2"];
+
+    frame = self.altView.frame;
+    CGFloat height=0;
+    if(altData1==nil || [altData1 isEqualToString:@""]){
+        [self.altData1 setHidden:YES];
+        [self.altData1Label setHidden:YES];
+        height += 36;
+    }
+    else{
+        self.altData1Label.text = [altData1 stringByAppendingString:@":"];
+    }
+    if(altData2==nil || [altData2 isEqualToString:@""]){
+        [self.altData2 setHidden:YES];
+        [self.altData2Label setHidden:YES];
+        
+        height += 36;
+    }
+    else{
+        self.altData2Label.text = [altData2 stringByAppendingString:@":"];
+    }
+    frame.size.height -= height;
+    self.altView.frame=frame;
+    
+    if(promoterVisible==nil || ![promoterVisible boolValue])
+        height+=36;
+    
+    frame=self.view1.frame;
+    frame.origin.y-=height;
+    self.view1.frame=frame;
+    
+    frame=self.view2.frame;
+    frame.origin.y-=height;
+    self.view2.frame=frame;
+    
+    frame=self.view3.frame;
+    frame.origin.y-=height;
+    self.view3.frame=frame;
+    
+    mainContainerContentSizeHeight-=height;
+    mainContainer.contentSize = CGSizeMake(self.view.bounds.size.width, mainContainerContentSizeHeight);
     
     [[[ServiceConsumer alloc] init] getListByType:@"S" UserInfo:[[[BaseUIViewController alloc] init] getUserInfo] :^(id json) {
         sourceList = json;
@@ -81,7 +150,14 @@
         
         LookupGridViewController *lookup = segue.destinationViewController;
 
-        lookup.productId=self.product.text;
+        for (DataList *tmp in productList) {
+            if([tmp.value isEqualToString:self.product.text]){
+                lookup.productId=tmp.key;
+                break;
+            }
+        }
+        
+
         lookup.zip=self.zip.text;
         
         [super setBackButton];
@@ -306,12 +382,7 @@
         //[self update:nil];
     }
     else{
-        
-        for (UIView *vw in self.view.subviews) {
-            if([vw isKindOfClass:[UITextField class]] || [vw isKindOfClass:[UITextView class]]){
-                [vw resignFirstResponder];
-            }
-        }
+        [textBox resignFirstResponder];
     }
 }
 
@@ -347,12 +418,38 @@
 }
 
 -(IBAction)didCheckAvailibilityClick:(id)sender {
-    [self performSegueWithIdentifier:@"CheckSeuge" sender:nil];
+    if([self.product.text isEqualToString:@""] || [self.zip.text isEqualToString:@""]){
+        //I dont know, we may need message here.....
+    }
+    else{
+        [self performSegueWithIdentifier:@"CheckSeuge" sender:nil];
+    }
 }
 
 -(IBAction)didSubmitClick:(id)sender {
     
-    [[[ServiceConsumer alloc] init] updateLead:[super getUserInfo] firstName:self.firstName.text lastName:self.lastName.text homePhone:self.homePhone.text workPhone:self.workPhone.text cellPhone:self.cellPhone.text address:self.address.text city:self.city.text state:self.state.text zip:[self.zip.text intValue] email:@"" source:[self.source.text intValue] promoter:[self.promoter.text intValue] product:self.product.text altData1:self.altData1.text altData2:self.altData2.text appDate:self.appDate.text appTime:self.appTime.text waiver:self.waiver.on notes:self.comments.text :^(bool *success) {
+    NSInteger promoter=0;
+    NSString *promoterVisible = [Utility retrieveFromUserDefaults:@"PromoterDropdownVisible"];
+    if(promoterVisible==nil || ![promoterVisible boolValue]){
+        promoter=0;
+    }
+    else{
+        for (DataList *tmp in promoterList) {
+            if([tmp.value isEqualToString:self.promoter.text]){
+                promoter=tmp.key;
+                break;
+            }
+        }
+    }
+    NSInteger source=0;
+    for (DataList *tmp in sourceList) {
+        if([tmp.value isEqualToString:self.source.text]){
+            source=tmp.key;
+            break;
+        }
+    }
+    
+    [[[ServiceConsumer alloc] init] updateLead:[super getUserInfo] firstName:self.firstName.text lastName:self.lastName.text homePhone:self.homePhone.text workPhone:self.workPhone.text cellPhone:self.cellPhone.text address:self.address.text city:self.city.text state:self.state.text zip:[self.zip.text intValue] email:@"" source:source promoter:promoter product:self.product.text altData1:self.altData1.text altData2:self.altData2.text appDate:self.appDate.text appTime:self.appTime.text waiver:self.waiver.on notes:self.comments.text :^(bool *success) {
         
         if(*success){
             

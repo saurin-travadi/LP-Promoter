@@ -255,6 +255,7 @@
                                               [obj valueForKey:@"T4"],
                                               [obj valueForKey:@"T5"],
                                               [obj valueForKey:@"T6"] ,nil]
+                 branch:[obj valueForKey:@"DisplayDate"]
              ]];
         }
         

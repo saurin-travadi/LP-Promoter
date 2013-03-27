@@ -67,6 +67,9 @@
         branchList = json;
         [branchList insertObject:[[DataList alloc] initWithKey:@"" value:@""]  atIndex:0];
     }];
+    if(self.productId!=nil){
+        [self getLookup];
+    }
 
 }
 
@@ -102,13 +105,33 @@
 
 -(void)getLookup {
     HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:branchText.text product:@"" zip:@"" :^(id json) {
-        lookupTable=json;
-        
-        [self.gridView reloadData];
-        [HUD hide:YES];
-    }];
-
+    if(self.productId==nil){
+        [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:branchText.text product:@"" zip:@"" :^(id json) {
+            lookupTable=json;
+            
+            [self.gridView reloadData];
+            [HUD hide:YES];
+        }];
+    }
+    else{
+        [[[ServiceConsumer alloc] init] getForwardLookup:[super getUserInfo] branch:@"" product:self.productId zip:self.zip :^(id json) {
+            lookupTable=json;
+            if([lookupTable count]==0){
+                [HUD hide:YES];
+                
+                //no data by product and zip, clean them up
+                self.productId=nil;
+                self.zip=nil;
+                [[[UIAlertView alloc] initWithTitle:@"" message:@"The combination of product and zip is not in the current coverage area of your company" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+            }
+            else{
+                [self.branchText setUserInteractionEnabled:NO];
+                [self.gridView reloadData];
+                self.branchText.text = ((Lookup *)[lookupTable objectAtIndex:0]).branchId;
+                [HUD hide:YES];
+            }
+        }];
+    }
 }
 
 
