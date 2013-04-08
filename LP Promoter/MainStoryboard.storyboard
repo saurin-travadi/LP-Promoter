@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3p4-39-fX6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3p4-39-fX6">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -42,11 +42,11 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFit" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="fyL-BK-7tU">
-                                <rect key="frame" x="208" y="325" width="67" height="28"/>
+                                <rect key="frame" x="208" y="325" width="72" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" backgroundImage="btn-login.png">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -126,13 +126,13 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Lab-gZ-81p"/>
-                        <barButtonItem image="appointment.png" style="plain" id="re9-i4-Jlj">
+                        <barButtonItem image="icn-availability.png" style="plain" id="re9-i4-Jlj">
                             <connections>
                                 <segue destination="EGi-ew-IFs" kind="push" id="d5z-Nd-hgB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G0F-oS-i1j"/>
-                        <barButtonItem image="currency.png" style="plain" id="NOs-iA-dxr">
+                        <barButtonItem image="icn-newlead.png" style="plain" id="NOs-iA-dxr">
                             <connections>
                                 <segue destination="GKa-dw-Bn4" kind="push" id="gfg-tS-KUs"/>
                             </connections>
@@ -1126,9 +1126,10 @@
     <resources>
         <image name="BottomBar.png" width="320" height="49"/>
         <image name="Default.png" width="320" height="480"/>
-        <image name="appointment.png" width="61" height="40"/>
+        <image name="btn-login.png" width="65" height="24"/>
         <image name="chart.png" width="40" height="40"/>
-        <image name="currency.png" width="23" height="40"/>
+        <image name="icn-availability.png" width="48" height="40"/>
+        <image name="icn-newlead.png" width="48" height="40"/>
         <image name="login.png" width="320" height="480"/>
         <image name="welcome.png" width="220" height="18"/>
     </resources>
