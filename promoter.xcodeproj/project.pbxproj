@@ -91,6 +91,8 @@
 		BF2C960D16A12F1D0004E10D /* PFGridViewLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960316A12F1D0004E10D /* PFGridViewLabelCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C960E16A12F1D0004E10D /* PFGridViewSection+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960516A12F1D0004E10D /* PFGridViewSection+Internal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BF2C960F16A12F1D0004E10D /* PFGridViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C960716A12F1D0004E10D /* PFGridViewSection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BFA5F6F21714F46B002E43C2 /* CheckAva.png in Resources */ = {isa = PBXBuildFile; fileRef = BFA5F6F01714F46B002E43C2 /* CheckAva.png */; };
+		BFA5F6F31714F46B002E43C2 /* CheckAva@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFA5F6F11714F46B002E43C2 /* CheckAva@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +219,8 @@
 		BF2C960516A12F1D0004E10D /* PFGridViewSection+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFGridViewSection+Internal.m"; sourceTree = "<group>"; };
 		BF2C960616A12F1D0004E10D /* PFGridViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFGridViewSection.h; sourceTree = "<group>"; };
 		BF2C960716A12F1D0004E10D /* PFGridViewSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFGridViewSection.m; sourceTree = "<group>"; };
+		BFA5F6F01714F46B002E43C2 /* CheckAva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckAva.png; path = Images/CheckAva.png; sourceTree = "<group>"; };
+		BFA5F6F11714F46B002E43C2 /* CheckAva@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CheckAva@2x.png"; path = "Images/CheckAva@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +349,8 @@
 				BF05B183168CD07600C42BDE /* LocalSettings.plist */,
 				BF05B164168CCF1F00C42BDE /* AlternateLogin.xib */,
 				BF05B156168CCDCE00C42BDE /* MainStoryboard.storyboard */,
+				BFA5F6F01714F46B002E43C2 /* CheckAva.png */,
+				BFA5F6F11714F46B002E43C2 /* CheckAva@2x.png */,
 				BF05B113168CCD5000C42BDE /* Images */,
 				BF05B0F4168CCCC600C42BDE /* LP Promoter-Info.plist */,
 				BF05B0F5168CCCC600C42BDE /* InfoPlist.strings */,
@@ -547,6 +553,8 @@
 				704A8E4D17133FF80098C84E /* icn-availability@2x.png in Resources */,
 				704A8E50171341D90098C84E /* icn-newlead.png in Resources */,
 				704A8E51171341D90098C84E /* icn-newlead@2x.png in Resources */,
+				BFA5F6F21714F46B002E43C2 /* CheckAva.png in Resources */,
+				BFA5F6F31714F46B002E43C2 /* CheckAva@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

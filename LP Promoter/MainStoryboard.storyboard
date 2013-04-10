@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3p4-39-fX6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3p4-39-fX6">
     <dependencies>
         <deployment version="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -126,13 +126,13 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Lab-gZ-81p"/>
-                        <barButtonItem image="icn-availability.png" style="plain" id="re9-i4-Jlj">
+                        <barButtonItem image="icn-newlead.png" style="plain" id="re9-i4-Jlj">
                             <connections>
                                 <segue destination="EGi-ew-IFs" kind="push" id="d5z-Nd-hgB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="G0F-oS-i1j"/>
-                        <barButtonItem image="icn-newlead.png" style="plain" id="NOs-iA-dxr">
+                        <barButtonItem image="icn-availability.png" style="plain" id="NOs-iA-dxr">
                             <connections>
                                 <segue destination="GKa-dw-Bn4" kind="push" id="gfg-tS-KUs"/>
                             </connections>
@@ -556,7 +556,7 @@
                                                 <rect key="frame" x="160" y="0.0" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Submit">
+                                                <state key="normal" backgroundImage="UpdateButton.png">
                                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -571,7 +571,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Check Availibility">
+                                                <state key="normal" backgroundImage="CheckAva.png">
                                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -771,7 +771,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="129" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jty-il-IPa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="129" id="hSc-Hu-HCL">
@@ -863,7 +863,7 @@
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="su0-9y-Oso">
                                 <rect key="frame" x="0.0" y="385" width="320" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.51345810496101885" blue="0.032221600135011963" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1125,7 +1125,9 @@
     </scenes>
     <resources>
         <image name="BottomBar.png" width="320" height="49"/>
+        <image name="CheckAva.png" width="274" height="71"/>
         <image name="Default.png" width="320" height="480"/>
+        <image name="UpdateButton.png" width="274" height="71"/>
         <image name="btn-login.png" width="65" height="24"/>
         <image name="chart.png" width="40" height="40"/>
         <image name="icn-availability.png" width="48" height="40"/>
